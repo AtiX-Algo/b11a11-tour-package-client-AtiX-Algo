@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
-import { AuthContext } from "../contexts/AuthProvider";
+import { AuthContext } from "../contexts/AuthContext";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 

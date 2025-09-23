@@ -1,26 +1,38 @@
 import { useContext, useEffect, useState, useCallback } from "react";
 import useAxiosSecure from "../hooks/useAxiosSecure";
-import { AuthContext } from "../contexts/AuthProvider";
+import { AuthContext } from "../contexts/AuthContext";
 import toast from "react-hot-toast";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const [bookings, setBookings] = useState([]);
-  const [loading, setLoading] = useState(true); // ✅ loading state
+  const [loading, setLoading] = useState(true);
 
-  // ✅ Memoized fetchBookings
+  // Memoized fetchBookings
   const fetchBookings = useCallback(() => {
     if (!user?.email) return;
+
     setLoading(true); // start loading
+
     axiosSecure
-      .get(`/my-bookings/${user.email}`)
-      .then((res) => setBookings(res.data))
-      .catch((err) => console.error("Error fetching bookings:", err))
-      .finally(() => setLoading(false)); // stop loading
+      .get(`http://localhost:5000/my-bookings/${user.email}`)
+      .then((res) => {
+        // ✅ Ensure we only set an array
+        if (Array.isArray(res.data)) {
+          setBookings(res.data);
+        } else {
+          console.warn("API returned non-array data:", res.data);
+          setBookings([]); // fallback to empty array
+        }
+      })
+      .catch((err) => {
+        console.error("Error fetching bookings:", err);
+        setBookings([]); // fallback to empty array on error
+      })
+      .finally(() => setLoading(false)); // stop loading in all cases
   }, [user?.email, axiosSecure]);
 
-  // ✅ useEffect now depends on fetchBookings
   useEffect(() => {
     fetchBookings();
   }, [fetchBookings]);
@@ -28,7 +40,7 @@ const MyBookings = () => {
   const handleConfirm = (id) => {
     setLoading(true); // show spinner while updating
     axiosSecure
-      .patch(`/bookings/${id}`, { status: "completed" })
+      .patch(`http://localhost:5000/my-bookings/${user.email}/${id}`, { status: "completed" })
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           toast.success("Booking marked as completed!");

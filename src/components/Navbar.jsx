@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../contexts/AuthProvider";
+import { AuthContext } from "../contexts/AuthContext";
 import toast from "react-hot-toast";
 
 const Navbar = () => {

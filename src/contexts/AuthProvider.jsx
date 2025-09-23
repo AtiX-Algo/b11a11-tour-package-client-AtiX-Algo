@@ -10,7 +10,7 @@ import {
   signInWithPopup, 
   updateProfile 
 } from "firebase/auth";
-import { app } from "../firebase/firebase.config";
+import app from "../firebase/firebase.config";
 import axios from "axios";
 import { AuthContext } from "./AuthContext";
 
@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
 
       if (currentUser) {
         axios
-          .post(`${import.meta.env.VITE_API_URL}/jwt`, { email: currentUser.email })
+          .post('http://localhost:5000/jwt', { email: currentUser.email })
           .then((res) => {
             if (res.data.token) {
               localStorage.setItem("access-token", res.data.token);

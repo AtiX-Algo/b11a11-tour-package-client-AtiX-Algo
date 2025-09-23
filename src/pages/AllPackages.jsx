@@ -8,7 +8,7 @@ const AllPackages = () => {
 
     useEffect(() => {
         const fetchPackages = async () => {
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}/packages?search=${searchTerm}`);
+            const response = await axios.get(`http://localhost:5000/packages?search=${searchTerm}`);
             setPackages(response.data);
         };
         fetchPackages();
