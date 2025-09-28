@@ -1,14 +1,14 @@
-// AuthProvider.jsx
+// src/contexts/AuthProvider.jsx
 import { useState, useEffect } from "react";
-import { 
-  getAuth, 
-  createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword, 
-  onAuthStateChanged, 
-  signOut, 
-  GoogleAuthProvider, 
-  signInWithPopup, 
-  updateProfile 
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
+  updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import axios from "axios";
@@ -50,21 +50,52 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      // Use an inner async function to handle axios calls with await
+      const handleUser = async () => {
+        try {
+          setUser(currentUser);
 
-      if (currentUser) {
-        axios
-          .post('http://localhost:5000/jwt', { email: currentUser.email })
-          .then((res) => {
-            if (res.data.token) {
-              localStorage.setItem("access-token", res.data.token);
+          if (currentUser && currentUser.email) {
+            // 1) Save user to your DB (works for registration and login)
+            const userInfo = {
+              email: currentUser.email,
+              name: currentUser.displayName || "",
+            };
+
+            // Save user to DB (don't block if this fails, but catch errors)
+            try {
+              await axios.post("http://localhost:5000/users", userInfo);
+              // optional: console.log("Saved user to DB");
+            } catch (saveErr) {
+              console.error("Error saving user to DB:", saveErr);
             }
-            setLoading(false);
-          });
-      } else {
-        localStorage.removeItem("access-token");
-        setLoading(false);
-      }
+
+            // 2) Request JWT using the user's email
+            try {
+              const jwtRes = await axios.post("http://localhost:5000/jwt", {
+                email: currentUser.email,
+              });
+
+              if (jwtRes?.data?.token) {
+                localStorage.setItem("access-token", jwtRes.data.token);
+              } else {
+                localStorage.removeItem("access-token");
+              }
+            } catch (jwtErr) {
+              console.error("Error requesting JWT:", jwtErr);
+              localStorage.removeItem("access-token");
+            }
+          } else {
+            // No user signed in
+            localStorage.removeItem("access-token");
+          }
+        } finally {
+          // Ensure loading is turned off in every case
+          setLoading(false);
+        }
+      };
+
+      handleUser();
     });
 
     return () => unsubscribe();
