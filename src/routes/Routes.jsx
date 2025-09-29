@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
         ),
         
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/packages/${params.id}`).then((res) =>
+          fetch(`https://the-vagabond-tour.onrender.com/packages/${params.id}`).then((res) =>
             res.json()
           ),
       },

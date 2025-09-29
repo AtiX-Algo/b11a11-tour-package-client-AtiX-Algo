@@ -64,7 +64,7 @@ const AuthProvider = ({ children }) => {
 
             // Save user to DB (don't block if this fails, but catch errors)
             try {
-              await axios.post("http://localhost:5000/users", userInfo);
+              await axios.post("https://the-vagabond-tour.onrender.com/users", userInfo);
               // optional: console.log("Saved user to DB");
             } catch (saveErr) {
               console.error("Error saving user to DB:", saveErr);
@@ -72,7 +72,7 @@ const AuthProvider = ({ children }) => {
 
             // 2) Request JWT using the user's email
             try {
-              const jwtRes = await axios.post("http://localhost:5000/jwt", {
+              const jwtRes = await axios.post("https://the-vagabond-tour.onrender.com/jwt", {
                 email: currentUser.email,
               });
 

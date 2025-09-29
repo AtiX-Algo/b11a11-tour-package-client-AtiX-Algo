@@ -9,7 +9,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/packages-featured')
+      .get('https://the-vagabond-tour.onrender.com/packages-featured')
       .then((res) => {
         console.log("Data received from API:", res.data);
         setPackages(Array.isArray(res.data) ? res.data : []);

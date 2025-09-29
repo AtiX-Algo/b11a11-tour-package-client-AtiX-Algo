@@ -16,7 +16,7 @@ const MyBookings = () => {
     setLoading(true); // start loading
 
     axiosSecure
-      .get(`http://localhost:5000/my-bookings/${user.email}`)
+      .get(`https://the-vagabond-tour.onrender.com/my-bookings/${user.email}`)
       .then((res) => {
         // ✅ Ensure we only set an array
         if (Array.isArray(res.data)) {
@@ -40,7 +40,7 @@ const MyBookings = () => {
   const handleConfirm = (id) => {
     setLoading(true); // show spinner while updating
     axiosSecure
-      .patch(`http://localhost:5000/my-bookings/${user.email}/${id}`, { status: "completed" })
+      .patch(`https://the-vagabond-tour.onrender.com/my-bookings/${user.email}/${id}`, { status: "completed" })
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           toast.success("Booking marked as completed!");

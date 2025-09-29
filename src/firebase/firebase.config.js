@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyANUginwL8Zd4v-OM6fCTJ2OpGMUtnjRRQ",
-  authDomain: "tour-package-25b24.firebaseapp.com",
-  projectId: "tour-package-25b24",
-  storageBucket: "tour-package-25b24.firebasestorage.app",
-  messagingSenderId: "281641914802",
-  appId: "1:281641914802:web:bb13a642ae7d030323d4ab"
+  apiKey: "AIzaSyBx3cz-_9NshUDUpyXKXp6F3lzKkVTonJI",
+  authDomain: "the-vagabond-tour.firebaseapp.com",
+  projectId: "the-vagabond-tour",
+  storageBucket: "the-vagabond-tour.firebasestorage.app",
+  messagingSenderId: "519753082669",
+  appId: "1:519753082669:web:0d474479a2fbcdf43555a4"
 };
 
 // Initialize Firebase
