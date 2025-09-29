@@ -13,31 +13,31 @@ import 'swiper/css/navigation';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 
 const Testimonials = () => {
-    // In a real app, you would fetch this from a database
+    
     const testimonials = [
         {
             quote: "An absolutely unforgettable experience! The guides were knowledgeable and the itinerary was perfectly planned. The Vagabond Tour made our dream vacation a reality.",
             name: "Sarah L.",
             location: "Sydney, Australia",
-            image: "https://i.ibb.co/6n21hgy/user-thumb.jpg" // Replace with actual image URLs
+            image: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
         },
         {
             quote: "I've been on many tours, but this one stands out. The attention to detail and the authentic local experiences were second to none. Highly recommended!",
             name: "David Chen",
             location: "Toronto, Canada",
-            image: "https://i.ibb.co/6n21hgy/user-thumb.jpg"
+            image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
         },
         {
             quote: "Booking was a breeze, and the trip exceeded all our expectations. We saw amazing sights and made memories that will last a lifetime. Thank you!",
             name: "Maria Garcia",
             location: "Madrid, Spain",
-            image: "https://i.ibb.co/6n21hgy/user-thumb.jpg"
+            image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
         },
         {
             quote: "The perfect blend of adventure and comfort. I felt safe and well-cared-for throughout the entire journey. I can't wait to book my next trip with them.",
             name: "Kenji Tanaka",
             location: "Tokyo, Japan",
-            image: "https://i.ibb.co/6n21hgy/user-thumb.jpg"
+            image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
         }
     ];
 
