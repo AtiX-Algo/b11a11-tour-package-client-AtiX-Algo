@@ -77,7 +77,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-sm container px-4 mx-auto">
+    <div className="navbar bg-base-100 shadow-sm container px-1 mx-auto">
       {/* Navbar Start (logo + mobile menu) */}
       <div className="navbar-start">
         <div className="dropdown">
@@ -101,7 +101,7 @@ const Navbar = () => {
             {user && !roleLoading && role === "tour_guide" && guideLinks}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost text-xl md:text-2xl font-bold">
+        <Link to="/" className="btn btn-ghost text-xl md:text-2xl font-bold pr-10">
           <img src={logo} alt="The Vagabond Tour logo" className="h-20 mr-1" />
           The Vagabond Tour
         </Link>
