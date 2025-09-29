@@ -28,7 +28,7 @@ const useRole = () => {
       setIsRoleLoading(true);
       try {
         const res = await axiosSecure.get(`/users/role/${user.email}`);
-        console.log('Server response for role:', res.data);
+        //console.log('Server response for role:', res.data);
         if (isMounted) {
           setRole(res?.data?.role ?? null);
         }

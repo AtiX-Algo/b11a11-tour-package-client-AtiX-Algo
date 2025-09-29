@@ -10,7 +10,7 @@ import logo from "../assets/the-vagabond-tour.png";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [role, roleLoading] = useRole();
-  console.log('Navbar render -> Role:', role, '| Is Loading:', roleLoading);
+ // console.log('Navbar render -> Role:', role, '| Is Loading:', roleLoading);
 
   // State to manage theme
   const [theme, setTheme] = useState(
@@ -37,7 +37,7 @@ const Navbar = () => {
   const handleLogOut = () => {
     logOut()
       .then(() => toast.success("Logged out successfully!"))
-      .catch((error) => console.error(error));
+      //.catch((error) => console.error(error));
   };
 
   // Navigation links

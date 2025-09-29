@@ -12,7 +12,7 @@ const Home = () => {
     axios
       .get('https://the-vagabond-tour.onrender.com/packages-featured')
       .then((res) => {
-        console.log("Data received from API:", res.data);
+       // console.log("Data received from API:", res.data);
         setPackages(Array.isArray(res.data) ? res.data : []);
       })
       .catch((error) => {

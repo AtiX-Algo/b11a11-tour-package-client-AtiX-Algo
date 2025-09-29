@@ -22,7 +22,7 @@ const MyBookings = () => {
         if (Array.isArray(res.data)) {
           setBookings(res.data);
         } else {
-          console.warn("API returned non-array data:", res.data);
+        //  console.warn("API returned non-array data:", res.data);
           setBookings([]); // fallback to empty array
         }
       })
@@ -47,7 +47,7 @@ const MyBookings = () => {
           fetchBookings(); // refresh list
         }
       })
-      .catch((err) => console.error("Error updating booking:", err))
+     // .catch((err) => console.error("Error updating booking:", err))
       .finally(() => setLoading(false));
   };
 
