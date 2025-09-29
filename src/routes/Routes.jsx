@@ -1,3 +1,5 @@
+// src/routes/Routes.jsx
+
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import ErrorPage from "../pages/ErrorPage";
@@ -11,6 +13,7 @@ import PackageDetails from "../pages/PackageDetails";
 import ManageMyPackages from "../pages/ManageMyPackages";
 import MyBookings from "../pages/MyBookings";
 import AboutUs from "../pages/AboutUs";
+import GuideRoute from "./GuideRoute"; // ✅ Make sure this is imported
 
 export const router = createBrowserRouter([
   {
@@ -21,24 +24,52 @@ export const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/all-packages", element: <AllPackages /> },
       { path: "/about-us", element: <AboutUs /> },
-      { 
-        path: "/add-package", 
-        element: <PrivateRoute><AddPackage /></PrivateRoute> 
-      },
-      { 
-        path: "/manage-my-packages", 
-        element: <PrivateRoute><ManageMyPackages /></PrivateRoute> 
-      },
-      { 
-        path: "/my-bookings", 
-        element: <PrivateRoute><MyBookings /></PrivateRoute> 
-      },
+
       {
         path: "/package/:id",
-        element: <PrivateRoute><PackageDetails /></PrivateRoute>,
-        loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/packages/${params.id}`)
+        element: (
+          <PrivateRoute>
+            <PackageDetails />
+          </PrivateRoute>
+        ),
+        
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/packages/${params.id}`).then((res) =>
+            res.json()
+          ),
       },
-    ]
+
+      {
+        path: "/my-bookings",
+        element: (
+          <PrivateRoute>
+            <MyBookings />
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "/add-package",
+        element: (
+          <PrivateRoute>
+            <GuideRoute>
+              <AddPackage />
+            </GuideRoute>
+          </PrivateRoute>
+        ),
+      },
+
+      {
+        path: "/manage-my-packages",
+        element: (
+          <PrivateRoute>
+            <GuideRoute>
+              <ManageMyPackages />
+            </GuideRoute>
+          </PrivateRoute>
+        ),
+      },
+    ],
   },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },

@@ -9,6 +9,10 @@ const PackageDetails = () => {
     const { user } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
 
+    if (!packageData) {
+        return <div className="text-center py-20">Package not found or still loading...</div>;
+    }
+
     const { _id, image, tour_name, price, duration, departure_date, departure_location, destination, package_details, guide_name, guide_photo, guide_contact_no, bookingCount } = packageData;
 
     const handleBooking = e => {

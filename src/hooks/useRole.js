@@ -1,23 +1,23 @@
 // src/hooks/useRole.js
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../contexts/AuthContext";
-import useAxiosSecure from "../hooks/useAxiosSecure";
 
-/**
- * useRole - returns [role, isRoleLoading]
- * role: string | null  (e.g. 'user', 'guide', null)
- * isRoleLoading: boolean
- */
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
+import useAxiosSecure from './useAxiosSecure';
+
+
 const useRole = () => {
   const { user, loading: authLoading } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
+
   const [role, setRole] = useState(null);
   const [isRoleLoading, setIsRoleLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
-    const getRole = async () => {
-      if (!user?.email) {
+
+    const fetchRole = async () => {
+      // Only try fetching after auth is resolved and user exists
+      if (authLoading || !user?.email) {
         if (isMounted) {
           setRole(null);
           setIsRoleLoading(false);
@@ -27,21 +27,20 @@ const useRole = () => {
 
       setIsRoleLoading(true);
       try {
-        // Calls server endpoint: GET /users/role/:email (protected)
         const res = await axiosSecure.get(`/users/role/${user.email}`);
+        console.log('Server response for role:', res.data);
         if (isMounted) {
           setRole(res?.data?.role ?? null);
         }
-      } catch (err) {
-        console.error("useRole: failed to fetch role:", err);
+      } catch (error) {
+        console.error('useRole: failed to fetch role:', error);
         if (isMounted) setRole(null);
       } finally {
         if (isMounted) setIsRoleLoading(false);
       }
     };
 
-    // only attempt after auth finished initial loading
-    if (!authLoading) getRole();
+    fetchRole();
 
     return () => {
       isMounted = false;
