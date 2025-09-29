@@ -102,8 +102,8 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost text-xl md:text-2xl font-bold">
-          <img src={logo} alt="TourTrek logo" className="h-20 mr-1" />
-          TourTrek
+          <img src={logo} alt="The Vagabond Tour logo" className="h-20 mr-1" />
+          The Vagabond Tour
         </Link>
       </div>
 

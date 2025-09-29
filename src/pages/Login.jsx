@@ -65,7 +65,7 @@ const Login = () => {
                     <div className="px-8 pb-8">
                          <button onClick={handleGoogleSignIn} className="btn btn-outline w-full">Continue with Google</button>
                     </div>
-                    <p className="text-center mb-4">New to TourTrek? <Link to="/register" className="font-bold text-primary">Sign Up</Link></p>
+                    <p className="text-center mb-4">New to The Vagabond Tour? <Link to="/register" className="font-bold text-primary">Sign Up</Link></p>
                 </div>
             </div>
         </div>

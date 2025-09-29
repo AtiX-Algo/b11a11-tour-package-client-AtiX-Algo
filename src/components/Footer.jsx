@@ -2,8 +2,8 @@ const Footer = () => {
     return (
         <footer className="footer flex justify-between p-10 bottom-down-1 bg-base-200 text-base-content">
             <aside>
-                <a className="text-2xl font-bold">TourTrek</a>
-                <p>Providing reliable tour packages since 2024.<br/>Your adventure starts here.</p>
+                <a className="text-2xl font-bold">The Vagabond Tour</a>
+                <p>Providing reliable tour packages since 2025.<br/>Your adventure starts here.</p>
             </aside>
             <nav>
                 <h6 className="footer-title">Services</h6>
