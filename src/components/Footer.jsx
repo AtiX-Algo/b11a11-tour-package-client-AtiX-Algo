@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <footer className="footer p-10 bg-base-200 text-base-content">
+        <footer className="footer flex justify-between p-10 bottom-down-1 bg-base-200 text-base-content">
             <aside>
                 <a className="text-2xl font-bold">TourTrek</a>
                 <p>Providing reliable tour packages since 2024.<br/>Your adventure starts here.</p>

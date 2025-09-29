@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import Map from "../components/Map";
 
 const PackageDetails = () => {
     const packageData = useLoaderData();
@@ -13,7 +14,9 @@ const PackageDetails = () => {
         return <div className="text-center py-20">Package not found or still loading...</div>;
     }
 
-    const { _id, image, tour_name, price, duration, departure_date, departure_location, destination, package_details, guide_name, guide_photo, guide_contact_no, bookingCount } = packageData;
+    const { _id, image, tour_name, price, duration, departure_date, departure_location, destination, package_details, guide_name, guide_photo, guide_contact_no, bookingCount, location } = packageData;
+
+    const mapCenter = location || { lat: 23.8103, lng: 90.4125 }; 
 
     const handleBooking = e => {
         e.preventDefault();
@@ -75,6 +78,11 @@ const PackageDetails = () => {
                         <button className="btn btn-primary" onClick={() => document.getElementById('booking_modal').showModal()}>Book Now</button>
                     </div>
                 </div>
+            </div>
+
+            {/*  Added Map Section */}
+            <div className="mt-8 rounded-lg overflow-hidden shadow-lg">
+                <Map center={mapCenter} tourName={tour_name} />
             </div>
 
             {/* Booking Modal */}

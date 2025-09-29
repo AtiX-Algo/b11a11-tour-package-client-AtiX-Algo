@@ -5,6 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import toast from "react-hot-toast";
 import useRole from "../hooks/useRole";
+import logo from "../assets/the-vagabond-tour.png";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -101,6 +102,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost text-xl md:text-2xl font-bold">
+          <img src={logo} alt="TourTrek logo" className="h-20 mr-1" />
           TourTrek
         </Link>
       </div>

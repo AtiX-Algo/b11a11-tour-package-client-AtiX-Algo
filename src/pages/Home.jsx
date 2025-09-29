@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import PackageCard from "../components/PackageCard";
 import { Link } from "react-router-dom";
+import Testimonials from "../components/Testimonials";
 
 const Home = () => {
   const [packages, setPackages] = useState([]);
@@ -102,7 +103,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-
+      <Testimonials />
       {/* Top Destinations Section */}
       <div className="container mx-auto px-4 py-16">
         <h2 className="text-4xl font-bold text-center mb-10">Top Destinations</h2>
